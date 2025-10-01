@@ -25,7 +25,7 @@ Praktikum Sistem Operasi merupakan bagian penting dari pembelajaran, karena maha
 4. **Pengumpulan**
    - Setiap pertemuan, mahasiswa melakukan **commit & push** ke repositori masing-masing.
    - Dosen/Asisten akan melakukan pemeriksaan melalui GitHub.
-   - Deadline pengumpulan: **maksimal H+2 setelah pertemuan praktikum**.
+   - Deadline pengumpulan: **maksimal W+2 setelah pertemuan praktikum**.
    - Keterlambatan akan dikenakan pengurangan nilai.
 
 ---
