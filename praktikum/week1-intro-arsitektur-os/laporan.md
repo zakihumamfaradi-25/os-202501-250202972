@@ -1,20 +1,20 @@
 
 # Laporan Praktikum Minggu [X]
-Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
+Topik:Arsitektur dan Sistem Operasi 
 
 ---
 
 ## Identitas
-- **Nama**  : [Nama Mahasiswa]  
-- **NIM**   : [NIM Mahasiswa]  
-- **Kelas** : [Kelas]
+- **Nama**  : Zaki Humam Faradi 
+- **NIM**   : 250202972
+- **Kelas** : 1IKRA
 
 ---
 
 ## Tujuan
 Tuliskan tujuan praktikum minggu ini.  
 Contoh:  
-> Mahasiswa mampu menjelaskan fungsi utama sistem operasi dan peran kernel serta system call.
+> Mahasiswa mampu menjelaskan dasar-dasar arsitektur dan sistem operasi.
 
 ---
 
@@ -60,20 +60,33 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 ---
 
 ## Quiz
-1. [Pertanyaan 1]  
-   **Jawaban:**  
-2. [Pertanyaan 2]  
-   **Jawaban:**  
-3. [Pertanyaan 3]  
-   **Jawaban:**  
+1. Sebutkan tiga fungsi utama sistem operasi
+      Tiga fungsi utama sistem operasi (OS) adalah:
+Manajemen Sumber Daya: Mengelola perangkat keras (CPU, memori, I/O).
+Antarmuka Pengguna: Menyediakan cara bagi pengguna untuk berinteraksi dengan komputer (misalnya, melalui GUI).
+Eksekusi Program: Menyediakan lingkungan untuk menjalankan aplikasi.
+2.Jelaskan perbedaan antara kernel mode dan user mode.
+     Berikut perbedaannya:
+Kernel Mode (Istimewa): Kontrol penuh atas hardware, tempat OS berjalan. Kegagalan berarti sistem crash.
+User Mode (Terbatas): Akses terbatas ke hardware, tempat aplikasi berjalan. Kegagalan hanya membuat aplikasi crash.
+     
+3.Sebutkan contoh OS dengan arsitektur monolithic dan microkernel.
+     Monolithic Kernel:
+Semua layanan inti OS berada dalam satu blok di Kernel.
+Contoh: Linux, Solaris.
+Microkernel:
+Hanya fungsi dasar yang ada di Kernel; layanan lain berjalan terpisah di luar Kernel.
+Contoh: QNX, Hurd.
+
 
 ---
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
+- Apa bagian yang paling menantang minggu ini?
+    tugas yang cukup sulit karena baru pertama kali 
 - Bagaimana cara Anda mengatasinya?  
-
+    berusaha sebaik mungkin 
 ---
 
 **Credit:**  
