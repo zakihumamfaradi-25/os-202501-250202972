@@ -5,16 +5,15 @@ Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
 ---
 
 ## Identitas
-- **Nama**  : [Nama Mahasiswa]  
-- **NIM**   : [NIM Mahasiswa]  
-- **Kelas** : [Kelas]
+- **Nama**  : Zaki Humam Faradi 
+- **NIM**   : 250202972
+- **Kelas** : 1IKRA
 
 ---
 
 ## Tujuan
-Tuliskan tujuan praktikum minggu ini.  
-Contoh:  
-> Mahasiswa mampu menjelaskan fungsi utama sistem operasi dan peran kernel serta system call.
+
+Mahasiswa mampu menjelaskan fungsi utama sistem operasi dan peran kernel serta system call.
 
 ---
 
@@ -59,14 +58,13 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
 ---
 
-## Quiz
-1. [Pertanyaan 1]  
-   **Jawaban:**  
-2. [Pertanyaan 2]  
-   **Jawaban:**  
-3. [Pertanyaan 3]  
-   **Jawaban:**  
-
+## Quiz 
+1.Apa fungsi utama system call dalam sistem operasi?
+   sebagai jembatan atau antarmuka antara program pengguna dan inti sistem operasi (kernel) untuk meminta layanan, seperti mengelola proses, file, perangkat, dan komunikasi
+2.Sebutkan 4 kategori system call yang umum digunakan.
+   manajemen proses, manajemen file, manajemen perangkat, dan komunikasi
+3.Mengapa system call tidak bisa dipanggil langsung oleh user program?
+   karena alasan keamanan, stabilitas, dan manajemen sumber daya.
 ---
 
 ## Refleksi Diri
