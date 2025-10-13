@@ -68,6 +68,7 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
 3.Mengapa system call tidak bisa dipanggil langsung oleh user program?
    karena alasan keamanan, stabilitas, dan manajemen sumber daya.
+
 ---
 
 ## Refleksi Diri
