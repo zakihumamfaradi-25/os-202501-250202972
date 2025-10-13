@@ -59,8 +59,10 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 ---
 
 ## Quiz 
+
 1.Apa fungsi utama system call dalam sistem operasi?
    sebagai jembatan atau antarmuka antara program pengguna dan inti sistem operasi (kernel) untuk meminta layanan, seperti mengelola proses, file, perangkat, dan komunikasi
+
 2.Sebutkan 4 kategori system call yang umum digunakan.
    manajemen proses, manajemen file, manajemen perangkat, dan komunikasi
 
