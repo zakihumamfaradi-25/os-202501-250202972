@@ -41,8 +41,9 @@ dmesg | head
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
 
+<img width="1184" height="665" alt="zaki" src="https://github.com/user-attachments/assets/aab71dcc-d2c3-4de5-b261-c2afad4d3e7f" />
 
-![screenshot hasil](./screenshots/diagram-os.jpeg)
+
 ---
 
 ## Analisis
