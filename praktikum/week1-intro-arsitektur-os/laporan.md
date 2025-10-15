@@ -42,8 +42,8 @@ dmesg | head
 Sertakan screenshot hasil percobaan atau diagram:
 
 
-![screenshot hasil](./screenshots/diagram-os.jpeg)
----
+---<img width="1184" height="665" alt="zaki" src="https://github.com/user-attachments/assets/de17d70e-639d-4063-b1ec-9bbd671a19f9" />
+
 
 ## Analisis
 - uname -a adalah perintah di Linux yang digunakan untuk menampilkan semua informasi detail tentang sistem, termasuk nama kernel, nama mesin.
