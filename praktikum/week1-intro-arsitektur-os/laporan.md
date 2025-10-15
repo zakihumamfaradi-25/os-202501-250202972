@@ -40,8 +40,8 @@ dmesg | head
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil]([Screenshot hasil](screenshots/Screenshot 2025-10-06 174215.png) !)
 
+[Screenshot hasil](screenshots/Screenshot 2025-10-06 174215.png)
 ---
 
 ## Analisis
