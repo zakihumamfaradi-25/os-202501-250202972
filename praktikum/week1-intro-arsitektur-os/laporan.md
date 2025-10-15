@@ -41,7 +41,8 @@ dmesg | head
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
 
-[Screenshot hasil](screenshots/Screenshot 2025-10-06 174215.png)
+
+![screenshot hasil](./screenshots/diagram-os.jpeg)
 ---
 
 ## Analisis
