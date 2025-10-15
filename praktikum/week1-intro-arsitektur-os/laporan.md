@@ -18,9 +18,7 @@ Topik:Arsitektur dan Sistem Operasi
 ---
 
 ## Dasar Teori
-Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
-
----
+Sistem operasi adalah perangkat lunak yang mengontrol dan mengatur perangkat keras komputer serta menjalankan program aplikasi. Sistem ini bertindak sebagai penghubung antara pengguna dengan perangkat keras (system call), memungkinkan komputer berfungsi dan program dapat berjalan dengan baik, dengan bagian terpenting nya adalah kernel yang mengelolah sumber daya CPU,Memory,Storage (hardisk) dan I/O
 
 ## Langkah Praktikum
 1. Langkah-langkah yang dilakukan.  
