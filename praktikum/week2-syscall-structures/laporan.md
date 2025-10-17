@@ -73,9 +73,10 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
+- Apa bagian yang paling menantang minggu ini?
+  Masih belum terbiasa dengan tugas seperti ini 
 - Bagaimana cara Anda mengatasinya?  
-
+  berusaha sebaik mungkin
 ---
 
 **Credit:**  
