@@ -110,7 +110,8 @@ dmesg | tail -n 10
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+
+<img width="959" height="509" alt="zaki" src="https://github.com/user-attachments/assets/1a010d37-d76a-4017-b91e-de0cd39effab" />
 
 ---
 
