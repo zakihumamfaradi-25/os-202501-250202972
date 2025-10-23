@@ -111,7 +111,7 @@ ls -l percobaan.txt
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+<img width="962" height="892" alt="zaki week 3" src="https://github.com/user-attachments/assets/ec8ad3fc-6baf-43e6-89a0-fa335cf3ce18" />
 
 ---
 
