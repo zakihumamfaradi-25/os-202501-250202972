@@ -1,21 +1,23 @@
 
-# Laporan Praktikum Minggu [X]
-Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
+# Laporan Praktikum Minggu [5]
+Topik:  Penjadwalan CPU – FCFS dan SJF  
 
 ---
 
 ## Identitas
-- **Nama**  : [Nama Mahasiswa]  
-- **NIM**   : [NIM Mahasiswa]  
-- **Kelas** : [Kelas]
+- **Nama**  : Zaki Humam Faradi
+- **NIM**   : 250202972 
+- **Kelas** : 1ikra
 
 ---
 
 ## Tujuan
-Tuliskan tujuan praktikum minggu ini.  
-Contoh:  
-> Mahasiswa mampu menjelaskan fungsi utama sistem operasi dan peran kernel serta system call.
-
+Setelah menyelesaikan tugas ini, mahasiswa mampu:
+1. Menghitung *waiting time* dan *turnaround time* untuk algoritma FCFS dan SJF.  
+2. Menyajikan hasil perhitungan dalam tabel yang rapi dan mudah dibaca.  
+3. Membandingkan performa FCFS dan SJF berdasarkan hasil analisis.  
+4. Menjelaskan kelebihan dan kekurangan masing-masing algoritma.  
+5. Menyimpulkan kapan algoritma FCFS atau SJF lebih sesuai digunakan.
 ---
 
 ## Dasar Teori
@@ -58,6 +60,81 @@ Sertakan screenshot hasil percobaan atau diagram:
 Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
 ---
+## Tugas
+1. **Gunakan tabel proses berikut sebagai contoh:**
+   | Proses | Burst Time | Arrival Time |
+   |:--:|:--:|:--:|
+   | P1 | 6 | 0 |
+   | P2 | 8 | 1 |
+   | P3 | 7 | 2 |
+   | P4 | 3 | 3 |
+2.**Eksperimen 1 – FCFS (First Come First Served)**
+   - Urutkan proses berdasarkan *Arrival Time*.
+    P1-P2-P3-P4  
+   - Hitung nilai berikut untuk tiap proses:
+     
+     Waiting Time (WT) = waktu mulai eksekusi - Arrival Time
+     
+                       - P1 = 0 - 0 = 0
+     
+                       - P2 = 6 - 1 = 5
+     
+                       - P3 = 14 - 2 = 12
+     
+                       - P4 = 21 - 3 = 18
+     
+     Turnaround Time (TAT) = WT + Burst Time
+     
+     P1: 0 + 6 = 6 → 6 − 0 = 6
+     
+     P2: 6 + 8 = 14 → 14 − 1 = 13
+     
+     P3: 14 + 7 = 21 → 21 − 2 = 19
+     
+     P4: 21 + 3 = 24 → 24 − 3 = 21
+     
+  - Hitung rata-rata Waiting Time dan Turnaround Time.
+
+    rata rata TAT = (6 + 13 + 19 + 21) ÷ 4 = 59 ÷ 4 = 14.75
+    
+    rata rata WT = (0 + 5 + 12 + 18) ÷ 4 = 35 ÷ 4 = 8.75
+ 
+  -Gantt Chart (FCFS):
+ 
+     | P1 | P2 | P3 | P4 |
+     0    6    14   21   24
+
+     
+  3.**Eksperimen 2 – SJF (Shortest Job First)**
+   - Urutkan proses berdasarkan *Burst Time* terpendek (dengan memperhatikan waktu kedatangan).
+
+      Karena hanya P1 yang datang pertama, P1 dijalankan lebih dulu. Setelah itu urutannya berdasarkan burst time menjadi P4, P3, dan terakhir P2. Jadi urutan eksekusi proses adalah **P1 → P4 → P3 → P2**.
+
+   - Lakukan perhitungan WT dan TAT seperti langkah sebelumnya.
+
+     P1: 0 + 6 = 6 → WT = 0 − 0 = 0, TAT = 6 − 0 = 6
+     
+     P4: 6 + 3 = 9 → WT = 6 − 3 = 3, TAT = 9 − 3 = 6
+     
+     P3: 9 + 7 = 16 → WT = 9 − 2 = 7, TAT = 16 − 2 = 14
+     
+     P2: 16 + 8 = 24 → WT = 16 − 1 = 15, TAT = 24 − 1 = 23
+
+Rata-rata WT = (0 + 3 + 7 + 15) ÷ 4 = 25 ÷ 4 = 6.25
+
+Rata-rata TAT = (6 + 6 + 14 + 23) ÷ 4 = 49 ÷ 4 = 12.25
+
+   - Bandingkan hasil FCFS dan SJF pada tabel berikut:
+
+     | Algoritma | Avg Waiting Time | Avg Turnaround Time | Kelebihan | Kekurangan |
+     |------------|------------------|----------------------|------------|-------------|
+     | FCFS | 8,75 | 14,75| Sederhana dan mudah diterapkan | Tidak efisien untuk proses panjang |
+     | SJF | 6,25 | 12,25 | Optimal untuk job pendek | Menyebabkan *starvation* pada job panjang |
+
+ ---
+
+     
+
 
 ## Quiz
 1. [Pertanyaan 1]  
