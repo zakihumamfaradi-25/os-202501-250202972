@@ -127,13 +127,21 @@ Rata-rata TAT = (6 + 6 + 14 + 23) ÷ 4 = 49 ÷ 4 = 12.25
      | SJF | 6,25 | 12,25 | Optimal untuk job pendek | Menyebabkan *starvation* pada job panjang |
 
  ---
+4. **Eksperimen 3 – Visualisasi Spreadsheet (Opsional)**
+   - Gunakan Excel/Google Sheets untuk membuat perhitungan otomatis:
+     - Kolom: Arrival, Burst, Start, Waiting, Turnaround, Finish.
+     - Gunakan formula dasar penjumlahan/subtraksi.
+   - Screenshot hasil perhitungan dan simpan di:
+     ```
+     praktikum/week5-scheduling-fcfs-sjf/screenshots/
+     ```
 
 
 ---
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+<img width="1920" height="1080" alt="Screenshot 2025-11-06 075933" src="https://github.com/user-attachments/assets/4429cf08-bb36-4090-9147-97d24210533b" />
 
 ---
 
