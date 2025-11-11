@@ -1,7 +1,6 @@
 
 # Laporan Praktikum Minggu [X]
-Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
-
+Topik: Algoritma RR dan Priority
 ---
 
 ## Identitas
@@ -53,12 +52,16 @@ Namun, kelemahan utama Priority Scheduling adalah kemungkinan terjadinya starvat
    - Catat sisa *burst time* tiap putaran.
 
 3. **Eksperimen 2 – Priority Scheduling (Non-Preemptive)**
-   - Urutkan proses berdasarkan nilai prioritas (angka kecil = prioritas tinggi).  
+   - Urutkan proses berdasarkan nilai prioritas (angka kecil = prioritas tinggi).
+      prioritas angka kecil = prioritas tinggi
+Urutan eksekusi: P1 (0–5), P2 (5–8), P4 (8–14), P3 (14–22)
    - Lakukan perhitungan manual untuk:
      ```
      WT[i] = waktu mulai eksekusi - Arrival[i]
      TAT[i] = WT[i] + Burst[i]
      ```
+     ada di tugas
+     
    - Buat tabel perbandingan hasil RR dan Priority.
 
 4. **Eksperimen 3 – Analisis Variasi Time Quantum (Opsional)**
@@ -86,31 +89,28 @@ Namun, kelemahan utama Priority Scheduling adalah kemungkinan terjadinya starvat
    ```
 ---
 
-## Kode / Perintah
-Tuliskan potongan kode atau perintah utama:
-```bash
-uname -a
-lsmod | head
-dmesg | head
-```
+
 
 ---
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+<img width="1920" height="1080" alt="Screenshot 2025-11-11 182831" src="https://github.com/user-attachments/assets/30e05b0d-46db-4ecb-91da-c75705aed999" />
+<img width="1920" height="1080" alt="Screenshot 2025-11-11 182815" src="https://github.com/user-attachments/assets/43791ec8-bbd0-4dce-bf07-d392f0d48743" />
+
 
 ---
 
-## Analisis
-- Jelaskan makna hasil percobaan.  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
 
----
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
+Kesimpulan Praktikum Penjadwalan CPU
+
+Dari hasil praktikum dengan dua algoritma penjadwalan yaitu Round Robin dan Priority Scheduling, diperoleh bahwa masing-masing algoritma memiliki karakteristik dan performa yang berbeda. Pada percobaan ini, algoritma Priority Scheduling menghasilkan rata-rata Turnaround Time sebesar 10,75 dan rata-rata Waiting Time sebesar 5,25, sedangkan algoritma Round Robin menghasilkan rata-rata Turnaround Time sebesar 14,00 dan rata-rata Waiting Time sebesar 8,50.
+
+Hasil tersebut menunjukkan bahwa algoritma Priority Scheduling lebih efisien dalam menyelesaikan proses dibandingkan dengan Round Robin karena waktu tunggu dan waktu penyelesaiannya lebih singkat. Namun, algoritma Round Robin lebih adil dalam pembagian waktu CPU karena setiap proses mendapat giliran secara bergantian.
+
+Dengan demikian, pemilihan algoritma penjadwalan harus disesuaikan dengan kebutuhan sistem. Jika keadilan antar proses lebih diutamakan, maka digunakan algoritma Round Robin. Sebaliknya, jika efisiensi dan prioritas pekerjaan lebih penting, maka digunakan algoritma Priority Scheduling.
 
 ---
 
@@ -242,7 +242,9 @@ Rata-rata:
 
 2. Sajikan hasil perhitungan dan Gantt Chart dalam `laporan.md`.
  hasil perhitungan di nomor 1
-3. Bandingkan performa dan jelaskan pengaruh *time quantum* serta prioritas.  
+3. Bandingkan performa dan jelaskan pengaruh *time quantum* serta prioritas.
+ Berdasarkan hasil perbandingan, algoritma Priority memiliki rata-rata turnaround time dan waiting time yang lebih kecil dibandingkan Round Robin, yaitu 10,75 dan 5,25, sedangkan Round Robin menghasilkan 14 dan 8,5. Hal ini menunjukkan bahwa Priority lebih efisien dalam menyelesaikan proses secara keseluruhan. Pengaruh time quantum pada Round Robin sangat besar karena jika quantum terlalu kecil, sistem akan sering melakukan pergantian proses sehingga waiting time meningkat, sedangkan jika terlalu besar, algoritma akan menyerupai FCFS dan membuat proses pendek menunggu lebih lama. Sementara itu, algoritma Priority menentukan urutan eksekusi berdasarkan tingkat prioritas, sehingga proses yang lebih penting atau memiliki prioritas tinggi diselesaikan lebih cepat. Namun, kelemahannya adalah kemungkinan terjadinya starvation pada proses dengan prioritas rendah. Secara keseluruhan, Priority lebih unggul dalam efisiensi waktu, sedangkan Round Robin lebih adil dan cocok untuk sistem interaktif yang membutuhkan respons cepat.
+   
 4. Simpan semua bukti (tabel, grafik, atau gambar) ke folder `screenshots/`.  
 
 ### Quiz
@@ -251,13 +253,21 @@ Tuliskan jawaban di bagian **Quiz** pada laporan:
 2. Apa pengaruh besar/kecilnya *time quantum* terhadap performa sistem?  
 3. Mengapa algoritma Priority dapat menyebabkan *starvation*?  
 
+jawab:
+
+1. **Perbedaan utama** adalah **Round Robin** memberikan waktu eksekusi bergiliran secara adil untuk setiap proses, sedangkan **Priority Scheduling** mengeksekusi proses berdasarkan tingkat **prioritas**.  
+
+2. **Time quantum** yang terlalu **kecil** membuat CPU sering berpindah proses sehingga efisiensi menurun, sedangkan **time quantum** yang terlalu **besar** membuat proses kecil harus menunggu lama.  
+
+3. Algoritma **Priority** dapat menyebabkan **starvation** karena proses dengan prioritas rendah bisa tertunda terus jika selalu ada proses dengan prioritas lebih tinggi.
+
 ---
 ---
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
+- Apa bagian yang paling menantang minggu ini?  cukup sulit dalam pengerjaannya
+- Bagaimana cara Anda mengatasinya?  tanya teman
 
 ---
 
