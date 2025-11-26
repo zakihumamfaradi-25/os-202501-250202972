@@ -5,6 +5,7 @@ Topik:  Sinkronisasi Proses dan Masalah Deadlock
 ---
 
 ## Identitas
+ ## Nama Kelompok
  [Ervita Dwi Riyanti bertugas sebagai Ketua Kelompok dan analisis] [250202977] ,
 
  [Saskia Istiqomah bertugas implementasi ] [250202967] , 
