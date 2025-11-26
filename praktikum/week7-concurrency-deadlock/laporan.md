@@ -5,9 +5,12 @@ Topik:  Sinkronisasi Proses dan Masalah Deadlock
 ---
 
 ## Identitas
-- **Nama**  : Zaki Humam Faradi
-- **NIM**   : 250202972
-- **Kelas** : 1ikra
+ [Ervita Dwi Riyanti bertugas sebagai Ketua Kelompok dan analisis] [250202977] ,
+
+ [Saskia Istiqomah bertugas implementasi ] [250202967] , 
+
+ [Zaki Humam Faradi bertugas dokumentasi] [250202972] ,
+
 
 ---
 
