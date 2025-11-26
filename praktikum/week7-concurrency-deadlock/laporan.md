@@ -279,17 +279,6 @@ Penjelasan :
 
 ## Eksperimen 2
 
-Berikut analisis hasil modifikasi dari tiga solusi fixed yang sudah kita jalankan dan bukti/logika bahwa deadlock telah dihindari. kita akan:
-
-1. Menyatakan apa yang diubah pada setiap solusi.
-
-2. Menunjukkan argumen (bukti ringkas) mengapa deadlock tidak mungkin terjadi.
-
-3. Memberi tes praktis/log output yang dapat kamu lihat saat menjalankan untuk memastikan tidak deadlock.
-
-4. Menyajikan tabel pemetaan kondisi Coffman → bagaimana tiap solusi mengatasinya.
-
-5. Referensi hasil praktek kamu: screenshot yang kamu kirim ada di path lokal: /mnt/data/Simulasi dining philosophers.png.
 
 1) Solusi A Semaphore (mutex global)
 
