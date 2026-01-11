@@ -92,94 +92,66 @@ praktikum/week13-docker-resource-limit/
 |  └─ docker-limited.png
 └─ laporan.md
 ```
-### 2. Isi File Dockerfile
-```python
-# Gunakan image Python 
-FROM python:3.11.14-alpine3.23
 
-# Paksa Python matikan buffering
-ENV PYTHONUNBUFFERED=1
-
-# Set folder kerja di dalam container
-WORKDIR /app
-
-# Salin file app.py ke dalam container
-COPY app.py .
-
-# Perintah untuk menjalankan aplikasi
-CMD ["python", "app.py"]
-```
-### 3. Isi File app.py
-```python
-import os
-import time
-import sys
-
-def game():
-    print(f"\nProgram Game Survival Resource (PID: {os.getpid()})")
-    print(f"Setiap Level naik 50MB RAM ")
-
-    print("\nMemuat Texture Game ( Memory Test)")
-    ram_use = []
-
-    survival = bytearray(50 * 1024 * 1024) # 50 MB RAM
-
-    try:
-        for level in range(1,11):
-            print(f"Loading Level {level}... | Total RAM : {level * 50} MB")
-            ram_use.append(survival[:])
-
-            time.sleep(1)
-
-        print(f"\nSelamat! Anda mencapai Level {level}")
-        print("RAM 500MB Berhasil dimuat")
-
-    except MemoryError:
-        print("\n Game Crashed ( Force Close )")
-        print("Penyebab : Out Of Memory")
-        print("Docker mematikan paksa game.")
-
-        sys.exit(1)
-
-    print("\nRendering Grafik ( CPU Test )")
-    print("CPU dipaksa kerja 100%\n")
-
-    start_time = time.time()
-    while time.time() - start_time < 5:
-        _ = [x**2 for x in range(5000)]
-    
-    print("   -> Rendering Selesai.\n")
-
-if __name__ == "__main__":
-    game()
-```
-
-4. Command Docker
-* Command untuk proses Build Image
-  ```bash
-   docker build -t week13-resource-limit .
-   ```
-* Command untuk proses menjalankan container tanpa limit resource.
-  ```bash
-   docker run --rm week13-resource-limit
-   ```
-* Command untuk proses menjalankan container dengan limit resource.
-  ```bash
-   docker run --rm --cpus="0.5" --memory="256m" --memory-swap="256m" week13-resource-limit
-   ```
 
 ---
 
 ## Hasil Eksekusi
-Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+1.Proses instalasi Docker Desktop pada sistem operasi Windows.
 
----
+<img width="1920" height="1080" alt="Screenshot 2026-01-11 120841" src="https://github.com/user-attachments/assets/1127b670-43e2-4375-bc3b-6d18a3daeba5" />
+<img width="1920" height="1080" alt="Screenshot 2026-01-11 120947" src="https://github.com/user-attachments/assets/b8df1bfc-81ad-4a2c-9e12-42015b7ed146" />
+<img width="1199" height="747" alt="Screenshot 2026-01-11 130441" src="https://github.com/user-attachments/assets/21f4461a-3d97-436e-9b9b-858d5b1d102e" />
+<img width="1920" height="1080" alt="Screenshot 2026-01-11 130711" src="https://github.com/user-attachments/assets/da4a7475-2b18-482b-83db-e79ebb3cab24" />
+
+2.# Laporan Praktikum Week 13 – Docker Resource Limit
+
+## Screenshot 1 – Run Container Tanpa Limit
+<img width="583" height="503" alt="Screenshot 2026-01-11 213543" src="https://github.com/user-attachments/assets/82540ee4-5c62-4dc6-964f-ac764fb51446" />
+
+
+**Penjelasan:**
+
+Container dijalankan tanpa batasan resource menggunakan perintah:
+```bash
+docker run --rm week13-resource-limit
+
+```
+
+
+2.Container dijalankan dengan batasan CPU dan memori menggunakan perintah:
+```
+docker run --rm --cpus="0.5" --memory="256m" week13-resource-limit
+```
+
+<img width="502" height="444" alt="Screenshot 2026-01-11 213918" src="https://github.com/user-attachments/assets/7c76976a-13d0-417d-a894-f3ed8a119398" />
+
+CPU dibatasi hanya menggunakan 0.5 core, sehingga proses komputasi berjalan lebih lambat dibandingkan tanpa limit.
+
+Memori dibatasi maksimal 256 MB, sehingga program berhenti/error ketika alokasi melebihi kapasitas.
+
+Perilaku ini menunjukkan bahwa resource limit benar‑benar diterapkan dan mempengaruhi performa aplikasi di dalam container.
+
+3.Monitoring dilakukan dengan perintah:
+```
+docker stats
+
+```
+<img width="1369" height="292" alt="Screenshot 2026-01-11 214046" src="https://github.com/user-attachments/assets/4d82dc0a-0e60-4d21-81d7-fbe5a0f8be81" />
+
+
+Output menampilkan penggunaan CPU, memori, dan I/O container secara real‑time.
+Terlihat bahwa CPU tidak melebihi 0.5 core dan memori tidak melebihi 256 MB.
+Monitoring ini menjadi bukti visual bahwa limit bekerja sesuai konfigurasi.
 
 ## Analisis
-- Jelaskan makna hasil percobaan.  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
+## Hasil Pengamatan
+
+| Tahap Eksekusi                  | Perintah                                                                 | Hasil/Output                                                                 | Analisis                                                                 |
+|---------------------------------|--------------------------------------------------------------------------|------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| Run Container Tanpa Limit       | `docker run --rm week13-resource-limit`                                   | Program berjalan normal, iterasi memori terus bertambah hingga target tercapai | Container bebas menggunakan resource host, performa maksimal tanpa kendala |
+| Run Container Dengan Limit      | `docker run --rm --cpus="0.5" --memory="256m" week13-resource-limit`      | Program lebih lambat, berhenti/error saat memori melebihi 256 MB              | CPU throttling terlihat, OOM Killer aktif saat memori habis               |
+| Monitoring Resource dengan Stats| `docker stats`                                                            | Output menunjukkan CPU ≤ 0.5 core, memori ≤ 256 MB                           | Bukti visual bahwa limit resource diterapkan sesuai konfigurasi           |
 
 ---
 
