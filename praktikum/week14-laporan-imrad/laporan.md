@@ -14,14 +14,14 @@
 
 # 1. Pendahuluan (Introduction)
 
-## Latar Belakang
+## 1.1 Latar Belakang
 
 Manajemen memori merupakan salah satu komponen penting dalam sistem operasi yang berperan dalam mengatur penggunaan memori secara efisien. Dengan keterbatasan kapasitas memori fisik, sistem operasi menerapkan konsep *virtual memory* agar program berukuran besar tetap dapat dijalankan. Dalam mekanisme ini, data dibagi ke dalam satuan kecil yang disebut *page*.
 
 Ketika halaman yang dibutuhkan oleh CPU tidak berada di memori utama, maka terjadi *page fault*. Untuk menangani kondisi tersebut, sistem operasi menggunakan algoritma *page replacement*. Dua algoritma yang umum digunakan adalah **FIFO (First-In, First-Out)** dan **LRU (Least Recently Used)**. Kedua algoritma ini memiliki pendekatan yang berbeda dalam menentukan halaman yang akan digantikan, sehingga menghasilkan tingkat efisiensi yang berbeda pula.
 
 ---
-## Rumusan Masalah
+## 1.2 Rumusan Masalah
 
 Berdasarkan latar belakang tersebut, rumusan masalah dalam praktikum ini adalah:
 1. Bagaimana mekanisme kerja algoritma page replacement FIFO dan LRU?
@@ -30,7 +30,7 @@ Berdasarkan latar belakang tersebut, rumusan masalah dalam praktikum ini adalah:
 
 ---
 
-## Tujuan
+## 1.3 Tujuan
 
 Tujuan dari pelaksanaan praktikum ini adalah:
 1. Mengimplementasikan algoritma page replacement FIFO dan LRU.
@@ -40,9 +40,9 @@ Tujuan dari pelaksanaan praktikum ini adalah:
 
 ---
 
-# Metode (Methods)
+# 2. Metode (Methods)
 
-## Lingkungan Pengujian
+## 2.1 Lingkungan Pengujian
 
 Pengujian dilakukan dengan lingkungan sebagai berikut:
 - Sistem Operasi: Windows  
@@ -54,13 +54,31 @@ Pengujian dilakukan dengan lingkungan sebagai berikut:
 Lingkungan pengujian dibuat seragam untuk memastikan hasil yang diperoleh bersifat objektif dan dapat dibandingkan.
 
 ---
-### Dataset Uji
-Reference string yang digunakan:
+## 2.2 Skenario Pengujian
 
-7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2
+Skenario pengujian dilakukan dengan langkah-langkah berikut:
+1. Menentukan reference string:  
+   `7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2`
+2. Menentukan jumlah frame memori sebanyak 3 frame.
+3. Menjalankan simulasi algoritma FIFO dan mencatat setiap *page hit* dan *page fault*.
+4. Menghitung total *page fault* yang dihasilkan algoritma FIFO.
+5. Menjalankan simulasi algoritma LRU dengan parameter yang sama.
+6. Menghitung total *page fault* yang dihasilkan algoritma LRU.
+7. Membandingkan hasil simulasi kedua algoritma.
 
+---
+## 2.3 Variabel Pengukuran
 
-### Langkah Eksperimen
+Variabel yang digunakan dalam praktikum ini meliputi:
+- **Variabel bebas:** Jenis algoritma page replacement (FIFO dan LRU).
+- **Variabel terikat:** Jumlah *page fault* yang terjadi.
+- **Variabel kontrol:** Reference string dan jumlah frame memori.
+
+Penggunaan variabel kontrol bertujuan untuk memastikan bahwa hasil pengujian adil dan tidak dipengaruhi oleh faktor lain.
+
+---
+
+## 2.3 Langkah Eksperimen
 1. Menyiapkan *reference string* dan jumlah frame memori.
 2. Menjalankan simulasi algoritma FIFO.
 3. Mencatat *page hit* dan *page fault* pada setiap akses halaman.
@@ -72,25 +90,22 @@ Reference string yang digunakan:
 
 ---
 
-## Hasil (Results)
+# 3. Hasil (Results)
 
-### Hasil Eksekusi Program
+## 3.1  Hasil Eksekusi Program
 
 **Algoritma FIFO**
-
-![Hasil FIFO]
 
 <img width="1660" height="428" alt="Screenshot 2026-01-12 203422" src="https://github.com/user-attachments/assets/3b7fafb6-78c3-4d02-bce0-5273d2956628" />
 
 **Algoritma LRU**
 
-![Hasil LRU]
 
 <img width="637" height="458" alt="Screenshot 2026-01-12 203244" src="https://github.com/user-attachments/assets/67b8707f-81d5-4be2-b2c0-be8cf2fc3d36" />
 
 ---
 
-### Tabel Perbandingan Hasil
+## 3.2 Tabel Perbandingan Hasil
 
 | Algoritma | Jumlah Page Fault | Keterangan |
 |:--|:--:|:--|
@@ -101,7 +116,7 @@ Hasil menunjukkan bahwa algoritma LRU menghasilkan jumlah *page fault* lebih sed
 
 ---
 
-## Pembahasan (Discussion)
+# 4. Pembahasan (Discussion)
 
 Perbedaan jumlah *page fault* antara FIFO dan LRU disebabkan oleh perbedaan strategi penggantian halaman. Algoritma FIFO tidak mempertimbangkan frekuensi atau pola penggunaan halaman, sehingga halaman yang masih sering dibutuhkan dapat tergantikan lebih awal. Hal ini dapat menurunkan efisiensi penggunaan memori.
 
@@ -110,8 +125,37 @@ Sebaliknya, algoritma LRU memanfaatkan riwayat akses halaman dengan mengganti ha
 Meskipun LRU memiliki performa yang lebih baik, algoritma ini membutuhkan mekanisme pencatatan akses halaman yang lebih kompleks dibandingkan FIFO. Oleh karena itu, terdapat trade-off antara efisiensi kinerja dan kompleksitas implementasi.
 
 ---
+## 4.1 Analisis
 
-## Kesimpulan
+Hasil simulasi menunjukkan bahwa algoritma FIFO menghasilkan **10 page fault**, sedangkan algoritma LRU menghasilkan **9 page fault**. Perbedaan ini terjadi karena algoritma FIFO hanya mempertimbangkan urutan waktu masuk halaman ke memori tanpa memperhatikan frekuensi atau pola penggunaannya.
+
+Sebaliknya, algoritma LRU mengganti halaman yang paling lama tidak digunakan, sehingga lebih sesuai dengan prinsip *locality of reference*. Pendekatan ini memungkinkan sistem mempertahankan halaman yang masih sering diakses, sehingga mampu mengurangi jumlah *page fault* dan meningkatkan efisiensi penggunaan memori.
+
+---
+
+## 4.2  Kelebihan dan Kekurangan
+
+**Kelebihan FIFO:**
+- Implementasi sederhana.
+- Tidak memerlukan pencatatan riwayat akses halaman.
+
+**Kekurangan FIFO:**
+- Tidak mempertimbangkan pola akses halaman.
+- Berpotensi mengalami *Belady’s Anomaly*.
+
+**Kelebihan LRU:**
+- Lebih efisien dalam mengurangi *page fault*.
+- Sesuai dengan prinsip *locality of reference*.
+
+**Kekurangan LRU:**
+- Implementasi lebih kompleks.
+- Membutuhkan struktur data tambahan untuk mencatat riwayat akses.
+
+---
+
+
+# 5. Closing (Penutupan)
+## 5.1 Kesimpulan
 
 Berdasarkan hasil praktikum yang telah dilakukan, dapat disimpulkan bahwa:
 1. Algoritma FIFO dan LRU dapat digunakan untuk menangani *page replacement* pada sistem memori virtual.
@@ -121,7 +165,18 @@ Berdasarkan hasil praktikum yang telah dilakukan, dapat disimpulkan bahwa:
 
 ---
 
-## Quiz
+## 5.2 Saran
+
+Untuk pengembangan praktikum selanjutnya, disarankan:
+1. Menggunakan reference string yang lebih panjang dan bervariasi.
+2. Menambahkan algoritma page replacement lain seperti Optimal atau Clock sebagai pembanding.
+3. Mengukur parameter tambahan seperti waktu eksekusi dan penggunaan memori.
+4. Menerapkan simulasi pada lingkungan sistem operasi yang lebih realistis.
+
+---
+
+
+## 5.3 Quiz
 
 1. **Mengapa format IMRAD membantu membuat laporan praktikum lebih ilmiah dan mudah dievaluasi?**  
    Format IMRAD menyusun laporan secara sistematis mulai dari latar belakang, metode, hasil, hingga analisis, sehingga alur penelitian menjadi jelas, mudah dipahami, dan dapat direplikasi serta dievaluasi secara akademik.
