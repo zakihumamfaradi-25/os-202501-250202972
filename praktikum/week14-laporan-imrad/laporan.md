@@ -1,25 +1,23 @@
 
-# Laporan Praktikum Minggu [X]
-Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
+# Laporan Praktikum Minggu 14
+Topik: Penyusunan Laporan Praktikum Format IMRAD
 
 ---
 
 ## Identitas
-- **Nama**  : [Nama Mahasiswa]  
-- **NIM**   : [NIM Mahasiswa]  
-- **Kelas** : [Kelas]
+- **Nama**  :Zaki Humam Faradi 
+- **NIM**   : 250202972
+- **Kelas** : 1IKRA
 
 ---
 
-## Tujuan
-Tuliskan tujuan praktikum minggu ini.  
-Contoh:  
-> Mahasiswa mampu menjelaskan fungsi utama sistem operasi dan peran kernel serta system call.
+## Judul
+Simulasi Algoritma Penjadwalan CPU (FCFS)
 
 ---
 
-## Dasar Teori
-Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
+## Pendahuluan
+Penjadwalan CPU adalah mekanisme kunci dalam sistem operasi untuk mengoptimalkan utilisasi CPU melalui pengelolaan antrean proses siap (ready queue). Praktikum ini menyajikan simulasi algoritma First Come First Served (FCFS) non-preemptive, yang mengeksekusi proses berdasarkan urutan kedatangan, untuk menghitung metrik performa seperti Waiting Time (WT) dan Turnaround Time (TAT). Rumusan masalah: Bagaimana akurasi simulasi FCFS terhadap perhitungan manual pada dataset proses sederhana? Tujuan: Memverifikasi implementasi, menganalisis hasil, dan membandingkan dengan teori
 
 ---
 
