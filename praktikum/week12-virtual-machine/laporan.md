@@ -118,35 +118,136 @@ Proses menginstall Oracle Virtual Box untuk persiapan dalam pembuatan Virtual Ma
 <img width="842" height="676" alt="Screenshot 2026-01-08 170026" src="https://github.com/user-attachments/assets/eb51e232-de3a-48af-9b69-67ce1e936711" />
 <img width="823" height="639" alt="Screenshot 2026-01-08 170121" src="https://github.com/user-attachments/assets/073f7230-92f1-4426-845a-6da5f76f3887" />
 
+### 2. Konfigurasi & Instalasi VM
+Proses pembuatan mesin virtual menggunakan fitur *Unattended Install* di VirtualBox untuk otomatisasi instalasi Ubuntu.
+
+---<img width="1920" height="1008" alt="Screenshot 2026-01-13 224200" src="https://github.com/user-attachments/assets/e1fdf59a-4623-4c98-8a6e-64522c30e352" />
+
+<img width="1920" height="1008" alt="Screenshot 2026-01-13 224237" src="https://github.com/user-attachments/assets/82fe1b77-1318-4bd4-a14a-e3cf930b67ef" />
+
+<img width="1920" height="1008" alt="Screenshot 2026-01-13 224254" src="https://github.com/user-attachments/assets/3baffeb3-e6b0-4825-bc36-9efdb3b776f5" />
+
+<img width="1920" height="1008" alt="Screenshot 2026-01-13 224306" src="https://github.com/user-attachments/assets/cbb41174-1c4d-4580-b707-6a13d46947d0" />
+
+### 3. Eksperimen VM Linux Ubuntu 24.04 LTS
+Pengecekan spesifikasi menggunakan perintah `uname -a` (cek kernel) dan `free -h` (cek RAM).
+
+Terlihat total RAM yang terbaca adalah 3.8Gi (4GB).
+
+Pengujian beban kerja dengan membuka 5 tab Firefox (YouTube dan GitHub).
+- **Hasil:** RAM terpakai mencapai **92.2% (3.8 GB)**.
+- **Kondisi:** Sistem masih berjalan responsif dan lancar.
+<img width="1920" height="1008" alt="Screenshot 2026-01-13 222549" src="https://github.com/user-attachments/assets/0d2ee192-184f-4a5d-89c2-8de727937515" />
+
+<img width="1920" height="1008" alt="Screenshot 2026-01-13 221738" src="https://github.com/user-attachments/assets/9265e672-d28a-4fe4-87cf-9cc0afc7751b" />
+
+### 4. Stress Test (Skenario Low Resource : RAM 2 GB)
+Setelah proses mengurangi Resource , kemudian membuka lagi VM dan membuka system manager, terlihat ketika membuka firefox 5 tab dan youtube sudah memakan RAM 1. 8GB ( 87% ).
+
+<img width="1920" height="1008" alt="Screenshot 2026-01-13 223743" src="https://github.com/user-attachments/assets/006c698a-176f-4b1b-b88a-5ef38642dba4" />
+
+### 5. Catatan Konfigurasi
+   ```text
+   A. SPESIFIKASI HOST (KOMPUTER ASLI)
+   -----------------------------------------------------
+   OS Host         : Windows 11
+   RAM Host        : 16 GB
+   Software VM     : Oracle VirtualBox 7.2.4
+   File ISO        : Ubuntu 24.04 Desktop AMD64
+
+   B. IDENTITAS GUEST OS
+   -----------------------------------------------------
+   Nama VM         : Linux-Ubuntu
+   OS Guest        : Ubuntu 24.04 LTS
+   Username        : vboxuser
+   Password        : zakihumam
+   Hostname        : Linux-Ubuntu
+
+   C. SKENARIO PENGUJIAN RESOURCE
+   -----------------------------------------------------
+   Skenario 1: Konfigurasi Normal (High Performance)
+   - Base Memory (RAM) : 4096 MB (4 GB)
+   - Processor (CPU)   : 2 Core
+   - Base Disk Memory  : 25 GB
+   - Video Memory      : 128 MB
+   - Hasil Test        : Lancar membuka 5 tab Firefox.
+
+   Skenario 2: Konfigurasi Rendah (Low Performance)
+   - Base Memory (RAM) : 2048 MB (2 GB)
+   - Processor (CPU)   : 1 Core
+   - Base Disk Memory  : 25 GB
+   - Hasil Test        : Terjadi lag signifikan, Firefox lambat merespons.
+   ```
 ---
+
 
 ## Analisis
-- Jelaskan makna hasil percobaan.  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
+
+Berdasarkan percobaan instalasi dan pengujian *stress test* pada Virtual Machine Ubuntu 24.04, berikut adalah analisis mengenai perilaku sistem operasi dalam lingkungan virtual:
+
+### 1. Analisis Manajemen Memori (Memory Management)
+Dari pengujian menggunakan Firefox dengan 5 tab aktif (YouTube video playback & Web browsing), terlihat adanya perbedaan signifikan pada manajemen memori:
+
+* **Peran Virtual Memory (Swap Space):**
+    Ketika percobaan dilakukan pada resource rendah (2GB RAM - *berdasarkan skenario pembanding*), terjadi fenomena **Bottleneck**. Karena RAM fisik penuh, Kernel Linux terpaksa memindahkan data dari aplikasi yang tidak aktif ke *Swap Space* (partisi di harddisk). Proses perpindahan data dari RAM (kecepatan tinggi) ke Disk (kecepatan rendah) inilah yang menyebabkan sistem terasa lambat (*lagging*) atau macet. Peristiwa ini dalam teori Sistem Operasi dikenal sebagai **Thrashing**, di mana OS sibuk melakukan *paging* data daripada mengeksekusi instruksi CPU.
+
+### 2. Analisis Processor & Scheduling
+Penggunaan konfigurasi **2 Core CPU** pada percobaan utama memberikan dampak signifikan pada kemampuan multitasking:
+
+* **Multithreading:**
+    Firefox modern adalah aplikasi *multi-process*. Dengan dialokasikannya 2 Core, *CPU Scheduler* pada Ubuntu dapat membagi beban *render* video YouTube ke satu core, dan proses sistem background ke core lainnya secara paralel.
+* **Context Switching:**
+    Jika dibandingkan dengan konfigurasi 1 Core, sistem dengan 2 Core memiliki *overhead* yang lebih rendah saat melakukan *context switching*. Pada 1 Core, CPU harus berpindah-pindah tugas dengan sangat cepat antara melayani Firefox dan melayani kernel OS, yang mengakibatkan latensi input (mouse patah-patah) saat beban kerja tinggi.
+
+### 3. Analisis Mekanisme Virtualisasi (Hypervisor Role)
+Hasil perintah terminal `uname -a` dan `free -h` membuktikan cara kerja **Type-2 Hypervisor** (VirtualBox):
+
+* **Abstraksi Hardware:**
+    Guest OS (Ubuntu) mendeteksi bahwa ia memiliki akses eksklusif ke RAM 4GB dan CPU tertentu. Padahal secara fisik, hardware tersebut adalah milik Host OS (Windows 11). VirtualBox bertindak sebagai perantara yang menipu Guest OS agar merasa berjalan di atas hardware fisik ("Bare Metal"), padahal ia berjalan di atas software.
+* **Isolasi Kegagalan (Fault Isolation):**
+    Saat Ubuntu mengalami beban puncak (High Load), Task Manager di Windows (Host) memang akan menunjukkan kenaikan penggunaan RAM. Namun, jika Ubuntu mengalami *Crash* atau *Hang*, Windows tidak akan ikut error (BSOD). Ini membuktikan bahwa memori yang dialokasikan untuk VM benar-benar terisolasi dalam *sandbox* yang aman.
 
 ---
-
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
+Berdasarkan percobaan di atas, dapat disimpulkan bahwa:
+ 
+1. **Pengaruh RAM pada Performa:** Pada konfigurasi 4GB RAM, Ubuntu berjalan lancar meskipun penggunaan memori tinggi (90%+) saat multitasking. Namun, saat resource diturunkan menjadi 2GB , sistem operasi mengalami bottleneck. Aplikasi Firefox menjadi sangat lambat dibuka dan sering mengalami not responding karena sistem kehabisan memori fisik.
 
----
+2. **Peran Hypervisor:** VirtualBox berhasil membagi resource CPU fisik saya. Terbukti saat saya memberikan 2 Core ke VM, Ubuntu hanya mendeteksi 2 CPU, meskipun laptop asli saya memiliki lebih dari itu. Ini membuktikan fungsi abstraksi hardware berjalan dengan baik.
+
+3. **Isolasi Sistem:** Aktivitas berat yang dilakukan di dalam Guest OS (Ubuntu) memang memakan resource RAM laptop asli, namun file sistem antara Windows dan Ubuntu tetap terpisah total.
 
 ## Quiz
-1. [Pertanyaan 1]  
-   **Jawaban:**  
-2. [Pertanyaan 2]  
-   **Jawaban:**  
-3. [Pertanyaan 3]  
-   **Jawaban:**  
+
+1. **Apa perbedaan antara host OS dan guest OS?**
+   
+   **Jawaban:**
+
+   * **Host OS:** Sistem operasi utama yang berjalan langsung di fisik laptop/komputer (contoh: Windows 11 saya).
+   * **Guest OS:** Sistem operasi virtual yang berjalan "menumpang" di dalam aplikasi VirtualBox (contoh: Ubuntu).
+
+2. **Apa peran hypervisor dalam virtualisasi?**
+   
+   **Jawaban:**
+
+   Hypervisor (seperti VirtualBox) berperan sebagai **pengelola**. Tugas utamanya adalah membagi sumber daya fisik (seperti RAM dan CPU) dari komputer asli agar bisa digunakan oleh mesin virtual.
+
+3. **Mengapa virtualisasi meningkatkan keamanan sistem?**
+   
+   **Jawaban:**
+
+   Karena virtualisasi menerapkan konsep **Isolasi (Sandboxing)**. Segala aktivitas di dalam mesin virtual terkurung di lingkungannya sendiri. Jadi, jika Guest OS terkena virus atau rusak, komputer utama (Host) tetap aman dan tidak ikut rusak.
+
 
 ---
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
+- Apa bagian yang paling menantang minggu ini?
 
+  karena agak ribet ketika penginstalan virtual boxnya
+- Bagaimana cara Anda mengatasinya?  
+  minta bantuan teman
 ---
 
 **Credit:**  
