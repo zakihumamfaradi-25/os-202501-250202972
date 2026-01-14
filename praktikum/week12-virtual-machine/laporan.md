@@ -1,5 +1,5 @@
 
-# Laporan Praktikum Minggu [X]
+# Laporan Praktikum Minggu 12
 Topik:  Virtualisasi Menggunakan Virtual Machine  
 
 
@@ -93,18 +93,30 @@ Saya memilih untuk menjalankan Virtual OS Linux Ubuntu 24.04 LTS Dekstop, maka d
 
 
 ## Kode / Perintah
-Tuliskan potongan kode atau perintah utama:
+Berikut adalah perintah terminal yang dijalankan untuk verifikasi sistem di dalam Ubuntu:
+
 ```bash
+
+
+# Menampilkan informasi detail kernel dan arsitektur sistem
 uname -a
-lsmod | head
-dmesg | head
+
+
+# Mengecek penggunaan Memori (RAM) 
+free -h
 ```
+
 
 ---
 
 ## Hasil Eksekusi
-Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+
+Berikut adalah dokumentasi bukti keberhasilan instalasi dan pengujian resource pada Virtual Machine.
+
+### 1. Persiapan dan Instalasi
+Proses menginstall Oracle Virtual Box untuk persiapan dalam pembuatan Virtual Machine.
+<img width="842" height="676" alt="Screenshot 2026-01-08 170026" src="https://github.com/user-attachments/assets/eb51e232-de3a-48af-9b69-67ce1e936711" />
+<img width="823" height="639" alt="Screenshot 2026-01-08 170121" src="https://github.com/user-attachments/assets/073f7230-92f1-4426-845a-6da5f76f3887" />
 
 ---
 
