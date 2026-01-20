@@ -1,17 +1,11 @@
-# main.py
-# Mini Simulasi Sistem Operasi
-# Menu utama: FCFS Scheduling & FIFO Page Replacement
-
-from fcfs import simulasi_fcfs
-from fifo import simulasi_fifo
-
+from cpu_scheduling import simulasi_fcfs
+from page_replacement import simulasi_fifo
 
 def tampilkan_menu():
     print("\n=== MINI SIMULASI SISTEM OPERASI ===")
     print("1. Simulasi CPU Scheduling (FCFS)")
     print("2. Simulasi Memory Management (FIFO)")
     print("3. Keluar")
-
 
 def main():
     while True:
@@ -20,13 +14,13 @@ def main():
 
         if pilihan == "1":
             print("\n--- SIMULASI FCFS ---")
-            simulasi_fcfs("dataset_cpu.csv")
+            simulasi_fcfs("data/processes.csv")
 
         elif pilihan == "2":
             print("\n--- SIMULASI FIFO ---")
             try:
                 frame = int(input("Masukkan jumlah frame RAM: "))
-                simulasi_fifo("dataset_memory.txt", frame)
+                simulasi_fifo("data/page.txt", frame)
             except ValueError:
                 print("Input harus berupa angka!")
 
@@ -36,7 +30,6 @@ def main():
 
         else:
             print("Pilihan tidak valid. Coba lagi.")
-
 
 if __name__ == "__main__":
     main()
