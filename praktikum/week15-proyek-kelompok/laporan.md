@@ -61,15 +61,20 @@ Aplikasi telah dibungkus menggunakan Docker untuk memastikan kemudahan penggunaa
 
 ### 3.1 Prosedur Eksekusi (Docker)
 
-Langkah-langkah untuk menjalankan aplikasi via Docker:
+1.  **Tahap Build Image**
+    Kami membangun citra Docker (*docker image*) bernama `week15-proyek-kelompok`. Proses ini memastikan seluruh dependensi dan struktur folder tersusun dengan benar sesuai konfigurasi `Dockerfile`.
+![docker-build](https://github.com/user-attachments/assets/67457ee0-c07e-470d-bf77-673202672870)
 
-```bash
-# 1. Membangun Image dari Dockerfile
-docker build -t week-15 .
+  
+2.  **Tahap Eksekusi (Run)**
+    Container dijalankan dalam mode interaktif (`-it`) untuk memungkinkan pengguna berinteraksi dengan menu CLI aplikasi. Mode `--rm` diaktifkan agar container otomatis dibersihkan setelah demo selesai, menjaga kebersihan *resource* sistem host.
 
-# 2. Menjalankan Container secara Interaktif
-docker run -it --rm week-15
-```
+3.  **Tahap Interaksi Pengguna**
+    Saat aplikasi berjalan, demo mencakup tiga skenario utama:
+    * **Skenario 1 (Scheduling):** Memilih menu "1" untuk memuat `processes.csv` dan menampilkan simulasi antrean unduhan FCFS.
+    * **Skenario 2 (Memory):** Memilih menu "2" untuk memuat `pages.txt`, memasukkan input kapasitas RAM (contoh: 3 frame), dan mengamati simulasi penggantian halaman FIFO.
+    * **Skenario 3 (Terminasi):** Memilih menu "3" untuk keluar dari program secara aman.
+
 
 ### 3.2 Bukti Eksekusi
 
@@ -85,6 +90,7 @@ Berdasarkan data `processes.csv` (eFootball, PUBG, ML, Spotify):
 
 - **Total Waktu Eksekusi**: Tergantung pada akumulasi *Burst Time*
 - **Analisis**: Proses dieksekusi secara sekuensial. Proses `Spotify` yang datang terakhir (Arrival 3) harus menunggu hingga `eFootball`, `PUBG`, dan `ML` selesai, mengakibatkan *Waiting Time* yang lebih tinggi dibandingkan proses pertama.
+![cpu-scheduling](https://github.com/user-attachments/assets/303e0dc7-eea2-4d5f-8a73-175a802622b4)
 
 ### 4.2 Hasil Modul Page Replacement (FIFO)
 
@@ -92,10 +98,16 @@ Berdasarkan data `page.txt` dan asumsi **3 Frame**:
 
 - **Status Hit/Fault**: Terjadi *Fault* saat aplikasi baru (seperti YouTube) masuk ketika RAM sudah penuh oleh eFootball, PUBG, dan ML
 - **Analisis**: Karena menggunakan FIFO, `eFootball` sebagai aplikasi yang masuk pertama kali akan "dibuang" (pop index 0) saat `Spotify` atau `YouTube` membutuhkan ruang di RAM
+![page-replacement](https://github.com/user-attachments/assets/3e2d68e2-d0b6-4c8a-a9ad-a057e8b92065)
 
 ---
 
 ## 5. Pembagian Peran dan Kontribusi
+Proyek ini dikerjakan secara kolaboratif dengan pembagian tugas yang jelas untuk memastikan setiap modul dapat diselesaikan tepat waktu dan terintegrasi dengan baik. Berikut adalah rincian peran dan kontribusi setiap anggota tim:
+
+
+![commits-kelompok](https://github.com/user-attachments/assets/24c0f8ac-244f-47b2-ac43-0a936f1d20c7)
+![commits-kelompok(1)](https://github.com/user-attachments/assets/7dc8f9cb-64c5-47b1-8160-072df8015804)
 
 | Nama Anggota | Peran | Kontribusi |
 |--------------|-------|------------|
