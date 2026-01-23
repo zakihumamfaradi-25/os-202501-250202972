@@ -8,8 +8,8 @@
 ## Nama Anggota Kelompok 
 - Zaki Humam Faradi (250202972)
 - Andi Pratama (250202975)
-- Rifki Hidayat (250202XXX)
-- Ismatul Khoeriyah (250202XXX)
+- Rifki Hidayat (250202964)
+- Ismatul Khoeriyah (250202912)
 
 ---
   
